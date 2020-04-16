@@ -134,4 +134,3 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
   }
 });
 
-// Bonus, use location API to add the user's current location to the initial landing page.
