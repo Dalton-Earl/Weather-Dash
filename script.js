@@ -18,7 +18,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
   });
 
   function makeRow(text) {
-    var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
+    var li = $("<li>").addClass("btn yellow darken-3 collection-item").text(text);
     $(".history").append(li);
   }
 
@@ -75,16 +75,16 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
           // only look at forecasts around 3:00pm
           if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
             // create html elements for a bootstrap card
-            var col = $("<div>").addClass("col-md-2");
-            var card = $("<div>").addClass("card bg-primary text-white");
-            var body = $("<div>").addClass("card-body p-2");
+            var col = $("<div>").addClass("col m2");
+            var card = $("<div>").addClass("card orange darken-4 white-text");
+            var body = $("<p>")
 
-            var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
+            var title = $("<span>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
 
             var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
 
-            var p1 = $("<p>").addClass("card-text").text("Temp: " + data.list[i].main.temp_max + " °F");
-            var p2 = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
+            var p1 = $("<p>").text("Temp: " + data.list[i].main.temp_max + " °F");
+            var p2 = $("<p>").text("Humidity: " + data.list[i].main.humidity + "%");
 
             // merge together and put on page
             col.append(card.append(body.append(title, img, p1, p2)));
@@ -102,7 +102,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
       dataType: "json",
       success: function(data) {
         var uv = $("<p>").text("UV Index: ");
-        var btn = $("<span>").addClass("btn btn-sm").text(data.value);
+        var btn = $("<span>").addClass("btn btn-small").text(data.value);
         
         // change color depending on uv value
         if (data.value < 3) {
