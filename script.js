@@ -1,28 +1,29 @@
 $(document).ready(function() {
-
+//my personla api key assigned to a variable to make it easier to add to an api call
 var apiKey = "f84196054472799f168687ea0ce6ed18"
 
   $("#search-button").click(function() {
-    
+    //takes the calue of the search value form and assigns it to a variable 
     var searchValue = $("#search-value").val();
 
     // clear input box
     $("#search-value").val("");
-
+    //passed the searchValue variable to the search weather function
     searchWeather(searchValue); 
     
   });
-
+  //when the item in the history list is clicked it will run the search function with the text from the list item 
   $(".history").on("click", "li", function() {
     searchWeather($(this).text());
   });
-
+  //this function adds rows with the text from the search box that are syleized buttons
   function makeRow(text) {
     var li = $("<li>").addClass("btn yellow darken-3 collection-item").text(text);
     $(".history").append(li);
   }
 
   function searchWeather(searchValue) {
+    //uses ajax to make a GET request to the api with the search value and api key inserted
     $.ajax({
       type: "GET",
       url: `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=imperial&appid=${apiKey}`,
@@ -39,7 +40,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
         // clear any old content
         $("#today").empty();
 
-        // create html content for current weather
+        // create html content for current weather using the data from the json object that is returned from the api call
         var title = $("<h3>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ")");
         var card = $("<div>").addClass("card");
         var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH");
@@ -62,6 +63,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
   }
   
   function getForecast(searchValue) {
+    // this ajax call gets the information from the api that is then added to the five day forcast divs
     $.ajax({
       type: "GET",
       url: `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${apiKey}`,
