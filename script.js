@@ -29,6 +29,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
       url: `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=imperial&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
+        console.log(data);
         // create history link for this search
         if (history.indexOf(searchValue) === -1) {
           history.push(searchValue);
@@ -69,9 +70,10 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
       url: `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
+        console.log(data);
         // overwrite any existing content with title and empty row
         $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast:</h4>").append("<div class=\"row\">");
-
+        
         // loop over all forecasts (by 3-hour increments)
         for (var i = 0; i < data.list.length; i++) {
           // only look at forecasts around 3:00pm
@@ -103,6 +105,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
       url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
+        console.log(data)
         var uv = $("<p>").text("UV Index: ");
         var btn = $("<span>").addClass("btn btn-small").text(data.value);
         
