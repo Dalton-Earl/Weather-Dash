@@ -1,6 +1,7 @@
 $(document).ready(function() {
 //my personla api key assigned to a variable to make it easier to add to an api call
-var apiKey = "f84196054472799f168687ea0ce6ed18"
+var apiKey1 = "f84196054472799f168687ea0ce6ed18"
+var apiKey = "166a433c57516f51dfab1f7edaed8413"
 
   $("#search-button").click(function() {
     //takes the calue of the search value form and assigns it to a variable 
