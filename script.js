@@ -26,7 +26,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
     //uses ajax to make a GET request to the api with the search value and api key inserted
     $.ajax({
       type: "GET",
-      url: `http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=imperial&appid=${apiKey}`,
+      url: `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=imperial&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
         console.log(data);
@@ -48,7 +48,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
         var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
         var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
         var cardBody = $("<div>").addClass("card-body");
-        var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+        var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
 
         // merge and add to page
         title.append(img);
@@ -67,7 +67,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
     // this ajax call gets the information from the api that is then added to the five day forcast divs
     $.ajax({
       type: "GET",
-      url: `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${apiKey}`,
+      url: `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
         console.log(data);
@@ -85,7 +85,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
 
             var title = $("<span>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
 
-            var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+            var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
 
             var p1 = $("<p>").text("Temp: " + data.list[i].main.temp_max + " °F");
             var p2 = $("<p>").text("Humidity: " + data.list[i].main.humidity + "%");
@@ -102,7 +102,7 @@ var apiKey = "f84196054472799f168687ea0ce6ed18"
   function getUVIndex(lat, lon) {
     $.ajax({
       type: "GET",
-      url: `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`,
+      url: `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`,
       dataType: "json",
       success: function(data) {
         console.log(data)
